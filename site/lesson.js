@@ -12,7 +12,7 @@
     window.scrollTo({top:0,behavior:'smooth'});
   }
   document.querySelector('[data-prev]').onclick=()=>{if(index){index--;render()}};
-  document.querySelector('[data-next]').onclick=()=>{if(index<slides.length-1){index++;render()}else{location.href='index.html'}};
+  document.querySelector('[data-next]').onclick=()=>{if(index<slides.length-1){index++;render()}else{location.href=document.body.dataset.completeHref||'index.html'}};
   document.querySelectorAll('[data-quiz-check]').forEach(button=>button.onclick=()=>{
     const quiz=button.closest('.quiz'); const picked=quiz.querySelector('input:checked'); const result=quiz.querySelector('.result');
     if(!picked){result.textContent='답을 하나 골라주세요.';return}
