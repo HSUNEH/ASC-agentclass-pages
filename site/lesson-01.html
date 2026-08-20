@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ASC 에이전트트랙 1강 — Claude Code 설치와 환경 검증">
+  <title>1강: 설치와 환경 검증 · ASC 에이전트트랙</title>
+  <style>
+    :root{--ink:#17191f;--muted:#626977;--line:#e4e6eb;--paper:#fff;--wash:#f6f7f9;--blue:#2456e8;--blue-dark:#173fba;--warn:#fff8e8;--warn-line:#eac45d}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.8 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif} a{color:var(--blue)}
+    .header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.bar{max-width:1120px;min-height:64px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-weight:760;letter-spacing:-.04em;color:var(--ink);text-decoration:none}.brand span{color:var(--blue)}.back{font-size:14px;font-weight:650;text-decoration:none}
+    main{max-width:920px;margin:auto;padding:68px 24px 112px}.eyebrow{color:var(--blue);font-size:13px;font-weight:760;letter-spacing:.09em;text-transform:uppercase}h1,h2,h3,p{margin-top:0}h1{max-width:720px;margin:12px 0 20px;font-size:clamp(42px,7vw,68px);line-height:1.12;letter-spacing:-.065em}h2{margin:66px 0 18px;font-size:clamp(28px,4vw,38px);line-height:1.25;letter-spacing:-.055em}h3{margin:36px 0 12px;font-size:21px;letter-spacing:-.035em}.lead{max-width:680px;color:var(--muted);font-size:19px}.meta{margin-top:28px;color:var(--muted);font-size:14px}.rule{margin:52px 0;border:0;border-top:1px solid var(--line)}
+    .goal{margin:34px 0;padding:24px;border:1px solid #dbe4ff;border-radius:16px;background:#f6f8ff}.goal h2{margin:0 0 8px;font-size:22px}.goal p{margin:0;color:#435075}.callout{margin:28px 0;padding:20px 22px;border-left:3px solid var(--blue);border-radius:0 12px 12px 0;background:var(--wash)}.callout p:last-child,.notice p:last-child{margin-bottom:0}.notice{margin:28px 0;padding:20px 22px;border:1px solid var(--warn-line);border-radius:12px;background:var(--warn)}
+    .toc{margin:32px 0;padding:22px 24px;border:1px solid var(--line);border-radius:14px}.toc strong{display:block;margin-bottom:8px}.toc ol{margin:0;padding-left:1.3em;columns:2}.toc li{padding:3px 0}.toc a{text-decoration:none;color:var(--ink)}.toc a:hover{color:var(--blue)}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}.card{padding:20px;border:1px solid var(--line);border-radius:14px}.card h3{margin:0 0 8px;font-size:18px}.card p{margin:0;color:var(--muted);font-size:14px}.image{display:block;max-width:100%;margin:24px 0;border:1px solid var(--line);border-radius:12px}code{padding:2px 5px;border-radius:5px;background:#edf0f5;font:13px ui-monospace,SFMono-Regular,Menlo,monospace}pre{margin:18px 0;padding:19px;overflow:auto;border-radius:13px;background:#171a23;color:#ebeffc;font:13px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace}pre code{padding:0;background:none;color:inherit}table{width:100%;margin:20px 0;border-collapse:collapse;font-size:15px}th,td{padding:12px;border:1px solid var(--line);text-align:left;vertical-align:top}th{background:var(--wash)}li+li{margin-top:7px}.checklist{padding:22px 24px;border:1px solid #dbe4ff;border-radius:14px;background:#f7f9ff}.checklist h3{margin:0 0 8px}.footer{margin-top:76px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+    @media(max-width:680px){.bar,main{padding-left:18px;padding-right:18px}main{padding-top:48px}.split{grid-template-columns:1fr}.toc ol{columns:1}h2{margin-top:52px}}
+  </style>
+</head>
+<body>
+  <header class="header"><div class="bar"><a class="brand" href="index.html">ASC <span>에이전트트랙</span></a><a class="back" href="index.html">← 전체 레슨</a></div></header>
+  <main>
+    <div class="eyebrow">Lesson 01 · 약 20분</div>
+    <h1>내 컴퓨터에서<br>Claude Code를 시작합니다.</h1>
+    <p class="lead">Claude Code를 내가 정한 작업 폴더에서 실행하고, 준비가 됐다는 증거를 파일 하나로 남깁니다.</p>
+    <p class="meta">본문은 누구나 읽을 수 있습니다. 제출과 코치 피드백은 ASC 교육 플랫폼에서 진행합니다.</p>
+    <section class="goal"><h2>이 레슨을 끝내면</h2><p>내 컴퓨터에서 Claude Code를 실행하고, 실제 모델 호출까지 확인한 뒤 <code>asc-lesson1-env.txt</code>로 결과를 남길 수 있습니다.</p></section>
+    <nav class="toc" aria-label="목차"><strong>이 페이지에서 할 일</strong><ol><li><a href="#difference">웹 챗과 차이</a></li><li><a href="#prepare">준비와 설치</a></li><li><a href="#login">로그인과 폴더 신뢰</a></li><li><a href="#diagnose">진단과 결과 파일</a></li><li><a href="#submit">제출 전 확인</a></li><li><a href="#trouble">자주 막히는 곳</a></li></ol></nav>
+
+    <hr class="rule">
+    <section id="difference"><h2>웹 챗과 Claude Code는<br>일하는 자리가 다릅니다.</h2><p>웹 챗은 대화창에서 답을 받습니다. 파일을 만들어 주면 내가 내려받고, 어디에 저장할지 정합니다.</p><p>Claude Code는 내가 연 폴더 안에서 파일을 읽고, 만들고, 고치고, 필요한 명령을 실행합니다. 그래서 “이 폴더 파일을 훑어보고 정리해줘” 같은 요청을 바로 할 수 있습니다.</p><img class="image" src="lessons/env-setup-verify/web-vs-cc.png" alt="웹 챗과 Claude Code의 파일 생성 방식 비교"><div class="callout"><strong>요청도 끝난 상태로 말합니다.</strong><p>“문장을 써줘”보다 “이 폴더의 회의 메모를 읽고 결정·담당자·기한으로 정리해서 파일로 남겨줘”가 잘 통합니다. 결과가 대화창에만 남지 않고, 작업 폴더에 실제 산출물로 남기 때문입니다.</p></div><h3>앞으로 나올 이름</h3><table><thead><tr><th>이름</th><th>회사로 치면</th><th>하는 일</th></tr></thead><tbody><tr><td><code>CLAUDE.md</code></td><td>회사 정관</td><td>프로젝트에서 계속 지킬 규칙</td></tr><tr><td>스킬</td><td>프리랜서</td><td>절차가 정해진 반복 업무의 안내서</td></tr><tr><td>서브에이전트</td><td>정규직</td><td>판단이 필요한 일을 따로 맡기는 역할</td></tr><tr><td>오케스트레이터</td><td>임원</td><td>누구에게 무엇을 맡길지 나누는 역할</td></tr></tbody></table><p>지금은 이름과 역할만 익혀두면 됩니다. 판단이 필요하면 역할을 나누고, 절차가 정해진 반복 작업은 스킬로 정리합니다.</p></section>
+
+    <section id="prepare"><h2>준비하고 설치합니다.</h2><h3>어디서 열어도 됩니다</h3><div class="split"><div class="card"><h3>터미널</h3><p>가장 기본적인 방식입니다. 공식 문서도 대체로 이 기준으로 안내합니다.</p></div><div class="card"><h3>코드 편집기 안 터미널</h3><p>파일 목록을 보면서 작업하기 편합니다.</p></div><div class="card"><h3>데스크탑 앱</h3><p>검은 화면이 부담스럽다면 앱의 <code>Code</code> 화면에서 시작해도 됩니다.</p></div><div class="card"><h3>중요한 기준</h3><p>어디서 열었는지보다 내가 의도한 작업 폴더 안에서 열었는지가 중요합니다.</p></div></div><p>명령어는 어느 경로에서든 똑같이 붙여넣으면 됩니다. 지금 가장 덜 부담스러운 방식을 고르세요.</p><h3>설치 전 확인</h3><ul><li>Claude 계정과 Claude Pro 이상 구독</li><li>터미널을 열 수 있는 macOS, Windows 또는 Linux 컴퓨터</li><li>운영체제와 설치 명령은 촬영·실습 당일 <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noreferrer">Claude Code 공식 설치 문서</a>에서 다시 확인</li></ul><div class="notice"><strong><code>sudo</code>는 붙이지 마세요.</strong><p>권한을 억지로 올려 설치하면 프로그램이 root 계정 쪽에 들어가 내 터미널에서 명령을 찾지 못할 수 있습니다.</p></div><h3>설치 명령</h3><p>아래는 현재 레슨 원고의 예시입니다. 설치 방식은 바뀔 수 있으니 실행 직전에는 공식 문서를 우선합니다.</p><p><strong>macOS · Linux</strong></p><pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre><p><strong>Windows PowerShell</strong></p><pre><code>irm https://claude.ai/install.ps1 | iex</code></pre><p>설치가 끝나면 사용하던 터미널을 완전히 닫고 새로 엽니다. 새 창이 설치된 명령 위치를 다시 읽습니다.</p></section>
+
+    <section id="login"><h2>설치와 로그인을 확인합니다.</h2><pre><code>claude --version</code></pre><p>오류 없이 Claude Code 버전이 나오면 설치는 끝났습니다. 버전 숫자는 사람마다 달라도 괜찮습니다.</p><pre><code>claude auth login
+claude auth status</code></pre><p>브라우저가 열리면 Claude 계정으로 로그인하고 승인합니다. <code>claude auth status</code>에서 로그인 상태와 구독 정보를 확인할 수 있습니다.</p><h3>처음에는 빈 연습 폴더에서 시작합니다</h3><p>개인 자료가 없는 빈 폴더 하나를 만든 뒤, 그 안에서 Claude Code를 여세요. 처음 열면 이 폴더를 믿을지 확인하는 화면이 나올 수 있습니다.</p><img class="image" src="lessons/env-setup-verify/trust-prompt.png" alt="Claude Code 폴더 신뢰 확인 화면"><p>내가 직접 만든 빈 연습 폴더라면 진행해도 됩니다. 인터넷에서 내려받거나 남에게 받은 프로젝트는 바로 신뢰하지 말고, 안의 설정과 명령을 먼저 확인하세요.</p><div class="notice"><strong><code>--dangerously-skip-permissions</code>는 지금 쓰지 않습니다.</strong><p>이 옵션은 파일 수정과 명령 실행의 승인 과정을 건너뜁니다. 익숙해지기 전에는 승인 창에서 무엇을 하려는지 읽는 편이 안전합니다.</p></div><h3>작은 일을 하나 시켜 봅니다</h3><pre><code>이 폴더에 hello.md 파일을 만들고,
+첫 줄에는 "ASC 에이전트 트랙을 시작합니다"라고 적어줘.
+파일을 만든 뒤 내용도 확인해줘.</code></pre><p>대화창의 답이 아니라, 실제로 작업 폴더에 <code>hello.md</code>가 생기는지 확인합니다. 앞으로도 같은 흐름입니다. 작업 폴더를 열고, 원하는 끝 상태를 말하고, 만들어진 결과를 직접 확인합니다.</p></section>
+
+    <section id="diagnose"><h2>환경을 진단하고<br>결과 파일을 만듭니다.</h2><pre><code>claude doctor</code></pre><p>이 명령은 설치 방식, 플랫폼, 자동 업데이트 설정 등을 점검합니다.</p><img class="image" src="lessons/env-setup-verify/doctor.png" alt="claude doctor 실행 결과 예시"><p>진단이 끝나면 아래 명령으로 버전, 진단 결과, 로그인 정보 일부, 실제 모델 호출 결과를 하나의 파일에 모읍니다.</p><pre><code>{
+  echo "=== ASC 레슨 1 환경 검증 ==="
+  echo "--- 1. claude --version ---"
+  claude --version
+  echo "--- 2. claude doctor ---"
+  claude doctor
+  echo "--- 3. 내 플랜 ---"
+  claude auth status | grep -E '"(loggedIn|subscriptionType)"'
+  echo "--- 4. 내 모델 (실제 호출 1회) ---"
+  claude -p "ok" --output-format json
+} &gt; asc-lesson1-env.txt 2&gt;&amp;1</code></pre><table><thead><tr><th>항목</th><th>확인하는 것</th></tr></thead><tbody><tr><td>1</td><td>프로그램이 설치됐는지</td></tr><tr><td>2</td><td>설치 상태가 정상인지</td></tr><tr><td>3</td><td>로그인 상태와 구독 플랜</td></tr><tr><td>4</td><td>모델이 실제로 응답하는지</td></tr></tbody></table><p>1번과 2번은 “깔렸다”는 사실을 보여줍니다. 4번은 로그인까지 끝나 실제 모델이 응답한다는 사실을 보여줍니다.</p><pre><code>cat asc-lesson1-env.txt</code></pre></section>
+
+    <section id="submit"><h2>제출 전에는<br>이것만 확인합니다.</h2><div class="checklist"><h3>제출할 것</h3><ol><li><code>asc-lesson1-env.txt</code> 파일을 첨부합니다.</li><li>“이 과제가 내 실제 업무에서 무엇을 자동화했는가?”에 1~2문장으로 답합니다. 아직 자동화하지 않았다면 자동화하고 싶은 일을 적어도 됩니다.</li><li>API 키, 토큰, 이메일 주소, 개인 폴더 경로가 파일에 없는지 한 번 더 확인합니다.</li></ol></div><p>형식 검사 통과 뒤 다음 레슨이 열립니다. 코치 피드백은 별도로 오며, 피드백을 기다리느라 다음 레슨이 막히지는 않습니다.</p></section>
+
+    <section id="trouble"><h2>자주 막히는 곳</h2><h3><code>claude: command not found</code></h3><p>터미널을 완전히 닫고 새로 엽니다. 그래도 같으면 설치가 끝나지 않은 것이므로 공식 설치 문서를 다시 확인합니다. <code>sudo</code>를 붙여 설치했다면 빼고 다시 설치합니다.</p><h3>로그인 상태가 false로 나옵니다</h3><p><code>claude auth login</code>을 실행한 뒤 브라우저 승인까지 마칩니다.</p><h3>결과 파일이 비어 있습니다</h3><p>실제 모델 호출은 몇 초 걸릴 수 있습니다. 터미널 프롬프트가 다시 돌아올 때까지 기다린 뒤 파일을 확인합니다.</p><h3>파일 이름이 맞는데 반려됩니다</h3><p>파일명이 정확히 <code>asc-lesson1-env.txt</code>인지 확인합니다. Windows에서는 <code>.txt.txt</code>처럼 확장자가 두 번 붙지 않았는지 확인하세요.</p><p>더 찾아볼 곳: <a href="https://code.claude.com/docs" target="_blank" rel="noreferrer">Claude Code 공식 문서</a></p></section>
+    <footer class="footer">ASC 에이전트트랙 · 1강 상세 본문</footer>
+  </main>
+</body>
+</html>
