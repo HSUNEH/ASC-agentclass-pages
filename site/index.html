@@ -3,126 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="ASC 에이전트트랙 — Claude Code로 내 일을 자동화하는 3개의 첫 레슨">
+  <meta name="description" content="ASC 에이전트트랙 — Claude Code로 내 일을 자동화하는 첫 세 레슨">
   <title>ASC 에이전트트랙</title>
   <style>
-    :root { --ink:#15171c; --muted:#656b78; --line:#e4e6eb; --paper:#fff; --wash:#f6f7f8; --blue:#2456e8; --blue-dark:#173fba; --green:#067647; --gold:#9a6700; }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.75 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif; }
-    a { color:inherit; text-decoration:none; }
-    .site-header { position:sticky; top:0; z-index:10; background:rgba(255,255,255,.9); backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
-    .bar { max-width:1120px; margin:auto; min-height:64px; padding:0 24px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
-    .brand { font-weight:760; letter-spacing:-.04em; }
-    .brand span { color:var(--blue); }
-    nav { display:flex; gap:18px; color:var(--muted); font-size:14px; }
-    nav a:hover { color:var(--blue); }
-    main { max-width:1120px; margin:auto; padding:0 24px 104px; }
-    .hero { padding:86px 0 72px; max-width:760px; }
-    .eyebrow { color:var(--blue); font-size:13px; font-weight:750; letter-spacing:.08em; text-transform:uppercase; }
-    h1,h2,h3,p { margin-top:0; }
-    h1 { margin:12px 0 20px; font-size:clamp(42px,7vw,76px); line-height:1.12; letter-spacing:-.07em; }
-    h1 em { color:var(--blue); font-style:normal; }
-    .lead { max-width:620px; color:var(--muted); font-size:19px; line-height:1.75; }
-    .note { margin-top:28px; padding:15px 18px; border:1px solid #dce5ff; border-radius:12px; background:#f4f7ff; color:#33436a; font-size:14px; }
-    .course-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:0 0 88px; }
-    .course-card { min-height:220px; padding:22px; border:1px solid var(--line); border-radius:16px; display:flex; flex-direction:column; justify-content:space-between; transition:transform .18s,border-color .18s,box-shadow .18s; }
-    .course-card:hover { transform:translateY(-3px); border-color:#b7c6ff; box-shadow:0 12px 28px rgba(27,57,130,.08); }
-    .num { color:var(--blue); font-size:13px; font-weight:750; }
-    .course-card h2 { margin:8px 0; font-size:22px; line-height:1.35; letter-spacing:-.04em; }
-    .course-card p { margin:0; color:var(--muted); font-size:14px; }
-    .meta { margin-top:18px; color:var(--muted); font-size:13px; }
-    .lesson { scroll-margin-top:90px; display:grid; grid-template-columns:208px minmax(0,1fr); gap:64px; padding:72px 0; border-top:1px solid var(--line); }
-    .lesson-side { color:var(--muted); font-size:14px; }
-    .lesson-side strong { display:block; margin-bottom:4px; color:var(--blue); font-size:13px; letter-spacing:.07em; text-transform:uppercase; }
-    .lesson-side a { display:inline-block; margin-top:14px; color:var(--ink); font-weight:650; }
-    .lesson-side a:hover { color:var(--blue); }
-    .lesson h2 { margin:7px 0 15px; font-size:clamp(32px,4vw,48px); line-height:1.18; letter-spacing:-.06em; }
-    .lesson .intro { max-width:700px; color:var(--muted); font-size:18px; }
-    h3 { margin:42px 0 12px; font-size:20px; letter-spacing:-.035em; }
-    ul,ol { padding-left:1.25em; }
-    li + li { margin-top:5px; }
-    .callout { margin:26px 0; padding:20px; border-left:3px solid var(--blue); background:var(--wash); border-radius:0 12px 12px 0; }
-    .callout strong { display:block; margin-bottom:5px; }
-    .steps { margin:24px 0; padding:0; list-style:none; counter-reset:steps; }
-    .steps li { position:relative; padding:0 0 20px 46px; counter-increment:steps; }
-    .steps li::before { content:counter(steps); position:absolute; left:0; top:0; display:grid; place-items:center; width:29px; height:29px; border:1px solid #bdc9f6; border-radius:50%; color:var(--blue); font-weight:720; font-size:13px; }
-    .steps li:not(:last-child)::after { content:""; position:absolute; top:34px; bottom:0; left:14px; border-left:1px solid #d9ddec; }
-    .steps strong { display:block; }
-    code { padding:2px 5px; border-radius:5px; background:#eef0f4; font:13px ui-monospace,SFMono-Regular,Menlo,monospace; }
-    pre { margin:16px 0; padding:18px; overflow:auto; border-radius:12px; background:#151821; color:#e9eefc; font:13px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace; }
-    pre code { padding:0; background:none; color:inherit; }
-    .submission { margin-top:34px; padding:23px; border:1px solid #d9e4ff; border-radius:14px; background:#f7f9ff; }
-    .submission h3 { margin:0 0 7px; }
-    .submission p { margin-bottom:8px; color:#4a587c; }
-    .tag { display:inline-block; margin:4px 5px 0 0; padding:3px 9px; border-radius:999px; background:#e8edff; color:#344eb4; font-size:12px; font-weight:680; }
-    .footer { margin-top:42px; padding-top:24px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
-    @media (max-width:760px) { .bar,main { padding-left:18px; padding-right:18px; } nav { gap:12px; } .hero { padding:58px 0 48px; } .course-grid { grid-template-columns:1fr; margin-bottom:52px; } .course-card { min-height:160px; } .lesson { display:block; padding:52px 0; } .lesson-side { margin-bottom:20px; } }
+    :root{--ink:#15171c;--muted:#656b78;--line:#e4e6eb;--blue:#2456e8}*{box-sizing:border-box}body{margin:0;color:var(--ink);font:16px/1.75 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}main{max-width:1120px;margin:auto;padding:104px 24px}.eyebrow{color:var(--blue);font-size:13px;font-weight:750;letter-spacing:.08em}.hero{max-width:820px}.hero h1{margin:12px 0 24px;font-size:clamp(48px,8vw,78px);line-height:1.12;letter-spacing:-.075em}.hero h1 em{color:var(--blue);font-style:normal}.lead{max-width:700px;color:var(--muted);font-size:19px}.note{margin-top:28px;padding:15px 18px;border:1px solid #dce5ff;border-radius:12px;background:#f4f7ff;color:#33436a;font-size:14px}.course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:90px}.course-card{min-height:246px;padding:24px;border:1px solid var(--line);border-radius:16px;color:inherit;text-decoration:none;display:flex;flex-direction:column;justify-content:space-between;transition:transform .18s,border-color .18s,box-shadow .18s}.course-card:hover{transform:translateY(-3px);border-color:#b7c6ff;box-shadow:0 12px 28px rgba(27,57,130,.08)}.num{color:var(--blue);font-size:13px;font-weight:750}.course-card h2{margin:9px 0;font-size:23px;line-height:1.35;letter-spacing:-.045em}.course-card p,.meta{margin:0;color:var(--muted);font-size:14px}.meta{font-weight:650}@media(max-width:760px){main{padding:58px 18px}.course-grid{grid-template-columns:1fr;margin-top:54px}.course-card{min-height:180px}}
   </style>
 </head>
-<body>
-<header class="site-header"><div class="bar"><a class="brand" href="#top">ASC <span>에이전트트랙</span></a><nav aria-label="레슨 탐색"><a href="#lesson-1">1강</a><a href="#lesson-2">2강</a><a href="#lesson-3">3강</a></nav></div></header>
-<main id="top">
-  <section class="hero">
-    <div class="eyebrow">Claude Code starter track</div>
-    <h1>내 일을 맡길<br><em>첫 번째 에이전트</em>를 만듭니다.</h1>
-    <p class="lead">설치부터 반복 업무의 스킬화, 프로젝트 규칙까지. AI에게 길게 설명하는 법이 아니라, 내 기준이 다음 작업에도 남는 구조를 만듭니다.</p>
-    <div class="note">이 페이지는 읽기·실습용 공개 리더입니다. 실행 산출물 제출과 코치 피드백은 ASC 교육 플랫폼에서 진행합니다.</div>
-  </section>
+<body><main>
+  <section class="hero"><div class="eyebrow">CLAUDE CODE STARTER TRACK</div><h1>내 일을 맡길<br><em>첫 번째 에이전트</em>를 만듭니다.</h1><p class="lead">설치부터 반복 업무의 스킬화, 프로젝트 규칙까지. AI에게 길게 설명하는 법이 아니라, 내 기준이 다음 작업에도 남는 구조를 만듭니다.</p><div class="note">이 페이지는 읽기·실습용 공개 리더입니다. 실행 산출물 제출과 코치 피드백은 ASC 교육 플랫폼에서 진행합니다.</div></section>
   <section class="course-grid" aria-label="레슨 목록">
-    <a class="course-card" href="lesson-01.html"><div><div class="num">LESSON 01</div><h2>설치와 환경 검증</h2><p>내 폴더에서 Claude Code를 열고, 준비가 됐다는 증거를 남깁니다.</p></div><div class="meta">약 20분 · 상세 본문 보기 →</div></a>
-    <a class="course-card" href="#lesson-2"><div><div class="num">LESSON 02</div><h2>반복 업무를 스킬로 만들기</h2><p>한 번 해본 일을 기준으로 정리하고, 실제 업무에 다시 불러봅니다.</p></div><div class="meta">약 20분 · 스킬 만들기</div></a>
-    <a class="course-card" href="#lesson-3"><div><div class="num">LESSON 03</div><h2>프로젝트의 헌법, CLAUDE.md</h2><p>프로젝트 전체에서 계속 지킬 규칙과 검증 방법을 남깁니다.</p></div><div class="meta">약 20분 · 프로젝트 규칙</div></a>
+    <a class="course-card" href="lesson-01.html"><div><div class="num">LESSON 01</div><h2>설치와 환경 검증</h2><p>내 폴더에서 Claude Code를 열고, 준비가 됐다는 증거를 남깁니다.</p></div><div class="meta">약 20분 · 시작하기 →</div></a>
+    <a class="course-card" href="lesson-02.html"><div><div class="num">LESSON 02</div><h2>반복 업무를 스킬로 만들기</h2><p>한 번 해본 일을 기준으로 정리하고, 실제 업무에 다시 불러봅니다.</p></div><div class="meta">약 20분 · 시작하기 →</div></a>
+    <a class="course-card" href="lesson-03.html"><div><div class="num">LESSON 03</div><h2>프로젝트의 헌법, CLAUDE.md</h2><p>프로젝트 전체에서 계속 지킬 규칙과 검증 방법을 남깁니다.</p></div><div class="meta">약 20분 · 시작하기 →</div></a>
   </section>
-
-  <article class="lesson" id="lesson-1">
-    <aside class="lesson-side"><strong>Lesson 01</strong>설치와 환경 검증<br><a href="#top">↑ 처음으로</a></aside>
-    <div><h2>내 컴퓨터에서<br>Claude Code를 시작합니다.</h2><p class="intro">오늘의 목표는 간단합니다. Claude Code를 내가 정한 작업 폴더에서 실행하고, 정상 동작을 확인한 결과를 파일 하나로 남깁니다.</p>
-      <div class="callout"><strong>웹 챗과 무엇이 다를까요?</strong>웹 챗은 대화창에서 답을 받습니다. Claude Code는 내가 연 폴더 안에서 파일을 읽고, 만들고, 고치고, 필요한 명령을 실행합니다. 그래서 “답을 써줘”보다 “이 폴더의 메모를 읽고 결정·담당자·기한으로 정리해 파일로 남겨줘”처럼 끝난 상태를 말하는 편이 좋습니다.</div>
-      <h3>여는 곳은 세 군데입니다</h3><p>터미널, 코드 편집기 안의 터미널, 데스크탑 앱의 <code>Code</code> 화면 중에서 가장 덜 부담스러운 방법을 고르면 됩니다. 어느 화면이 정답인지는 중요하지 않습니다. <strong>내가 의도한 작업 폴더 안에서 여는 것</strong>이 중요합니다.</p>
-      <h3>오늘 할 일</h3><ol class="steps"><li><strong>공식 설치 문서 확인</strong>운영체제에 맞는 최신 설치 방법을 확인합니다. 설치 방식과 지원 OS는 바뀔 수 있으니, 오래된 화면을 그대로 따라 하지 않습니다.</li><li><strong>설치와 로그인 확인</strong><code>claude --version</code>으로 설치를 확인합니다. 버전 숫자가 다를 수는 있어도, 오류 없이 Claude Code 버전이 나오면 됩니다.</li><li><strong>빈 연습 폴더에서 시작</strong>내가 직접 만든 빈 폴더에서 Claude Code를 엽니다. 모르는 프로젝트의 신뢰 확인은 바로 승인하지 않습니다.</li><li><strong>파일 하나 만들기</strong>대화창의 답이 아니라 실제 파일이 폴더에 생기는지 확인합니다.</li></ol>
-      <pre><code>이 폴더에 hello.md 파일을 만들고,
-첫 줄에는 "ASC 에이전트 트랙을 시작합니다"라고 적어줘.
-파일을 만든 뒤 내용도 확인해줘.</code></pre>
-      <div class="submission"><h3>제출 준비</h3><p><code>asc-lesson1-env.txt</code>에 버전, 환경 진단 결과, 사용 환경을 남깁니다. API 키·토큰·이메일·개인 폴더 경로는 넣지 않습니다.</p><span class="tag">설치 확인</span><span class="tag">작업 폴더</span><span class="tag">환경 증거</span></div>
-    </div>
-  </article>
-
-  <article class="lesson" id="lesson-2">
-    <aside class="lesson-side"><strong>Lesson 02</strong>반복 업무를 스킬로 만들기<br><a href="#top">↑ 처음으로</a></aside>
-    <div><h2>잘된 결과의 기준을<br>다음 작업에도 남깁니다.</h2><p class="intro">스킬은 AI에게 일을 잘 시키는 긴 프롬프트가 아닙니다. 내가 자주 하는 일을 다시 맡길 수 있게 정리한 업무 안내서입니다.</p>
-      <div class="callout"><strong>스킬은 회사의 프리랜서입니다.</strong><code>CLAUDE.md</code>가 프로젝트 전체의 공통 규칙이라면, 스킬은 특정 일이 들어왔을 때 부르는 전문 업무 안내서입니다. 한 번만 할 요청은 대화에 바로 적고, 반복될 일을 스킬로 만듭니다.</div>
-      <h3>스킬은 결과에서 시작합니다</h3><p>처음부터 완벽한 스킬을 설계하려 하지 마세요. 먼저 한 번 실행해 보고, 결과를 고치면서 다음에도 지키고 싶은 기준을 뽑습니다. 발표자료라면 “제목은 결론부터”, “본문은 세 문장 이하”, “마지막 장에는 다음 행동”처럼 관찰 가능한 기준이 남습니다.</p>
-      <h3>오늘 할 일</h3><ol class="steps"><li><strong>실물을 봅니다</strong>공개된 스킬 폴더에서 <code>SKILL.md</code>와 보조 자료 구조를 확인합니다. 언제 쓰는지, 어떤 순서로 일하는지, 무엇을 확인하는지가 핵심입니다.</li><li><strong>계획을 먼저 봅니다</strong>실행 전에 입력 파일, 출력 파일, 구성 순서를 보여 달라고 요청합니다. 어디까지 할지 먼저 보면 결과를 고치기 쉽습니다.</li><li><strong>한 번 만들어 보고 고칩니다</strong>로컬에 저장한 레퍼런스 파일로 예시 결과를 만들고, 다음에도 지킬 기준을 적습니다.</li><li><strong>내 업무 스킬을 만듭니다</strong>이번 달 안에 다시 할 일, 눈에 보이는 결과, 내가 꼭 지키는 기준이 있는 업무 하나를 고릅니다.</li><li><strong>실제로 실행합니다</strong>스킬 파일만 만들지 말고, 실제 요청으로 불러 결과를 확인합니다.</li></ol>
-      <pre><code>내가 반복하는 &lt;업무 이름&gt;을 위한 스킬을 만들어줘.
-이 스킬은 &lt;언제 쓰는지&gt;에 사용하고,
-결과에는 &lt;반드시 지킬 기준 2~4개&gt;를 지켜줘.
-실행 전과 결과를 낸 뒤 확인할 체크리스트를 넣어줘.</code></pre>
-      <div class="submission"><h3>제출 준비</h3><p><code>asc-lesson2-skill.txt</code>에 내 <code>SKILL.md</code> 내용과 실제 실행 기록을 함께 남깁니다. 파일을 만들었다는 것과, 내 업무에 실제로 쓸 수 있다는 것은 다릅니다.</p><span class="tag">SKILL.md</span><span class="tag">실행 기록</span><span class="tag">반복 개선</span></div>
-    </div>
-  </article>
-
-  <article class="lesson" id="lesson-3">
-    <aside class="lesson-side"><strong>Lesson 03</strong>프로젝트의 헌법, CLAUDE.md<br><a href="#top">↑ 처음으로</a></aside>
-    <div><h2>프로젝트에서 계속 지킬<br>짧고 분명한 기준을 만듭니다.</h2><p class="intro">대화가 길어질수록 앞의 기준이 흐려지고, 같은 설명을 다시 붙여넣게 됩니다. <code>CLAUDE.md</code>는 다음 작업에도 필요한 프로젝트 규칙을 남기는 문서입니다.</p>
-      <div class="callout"><strong>정관은 지식창고가 아닙니다.</strong>모델이 한 번에 참고할 수 있는 정보와 집중력은 유한합니다. 오래된 메모, 다른 프로젝트 규칙, 한 번만 필요한 설명까지 쌓으면 중요한 기준이 묻힙니다. 반복 업무의 자세한 절차는 스킬로, 긴 참고자료는 별도 문서로 둡니다.</div>
-      <h3>오늘 남길 세 가지</h3><ol class="steps"><li><strong>프로젝트 목표</strong>이 프로젝트가 무엇을 하는지 한 문장으로 적습니다.</li><li><strong>바꾸면 안 되는 범위</strong>인증·데이터 구조처럼 요청 범위를 넘어 쉽게 건드리면 안 되는 영역을 적습니다.</li><li><strong>실행 가능한 검증</strong>“꼼꼼히 확인” 대신 테스트·타입 검사·빌드처럼 성공과 실패가 분명한 명령을 적습니다.</li></ol>
-      <pre><code># 프로젝트 규칙
-
-## 목적
-- 사용자가 할 일을 기록하고 완료 상태를 관리하는 작은 웹앱이다.
-
-## 작업 원칙
-- 요청 범위 밖의 인증·데이터 구조는 바꾸지 않는다.
-- 기능을 바꾸기 전에 관련 테스트와 현재 동작을 먼저 확인한다.
-
-## 검증
-- 변경 뒤 테스트와 타입 검사를 실행한다.</code></pre>
-      <h3>규칙이 행동을 바꾸는지 확인합니다</h3><p>같은 프로젝트를 두 폴더에 준비합니다. 하나에는 <code>CLAUDE.md</code>가 없고, 하나에만 규칙이 있습니다. 동일한 요청을 실행해 어떤 파일을 바꿨는지, 정해 둔 검증을 실제로 했는지 비교합니다. 규칙이 보이지 않으면 문서를 길게 늘리지 말고 관찰 가능한 한 문장으로 고칩니다.</p>
-      <div class="submission"><h3>제출 준비</h3><p><code>asc-lesson3-claudemd.txt</code>에 <code>CLAUDE.md</code>, 규칙 없는 기준 출력, 규칙 적용 출력, 검증 결과를 남깁니다. 전후 비교의 정확한 실행 명령은 현재 Claude Code 환경에서 재현한 뒤 교육 플랫폼에 확정합니다.</p><span class="tag">프로젝트 규칙</span><span class="tag">전후 비교</span><span class="tag">검증 결과</span></div>
-    </div>
-  </article>
-  <footer class="footer">ASC 에이전트트랙 · 본문과 실습 규격은 계속 검증하며 갱신합니다.</footer>
-</main>
-</body>
-</html>
+</main></body></html>
